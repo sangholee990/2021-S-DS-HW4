@@ -111,10 +111,16 @@ int** create_matrix(int row, int col)
            	   	   matrix[i][k]=rand()%20; // 행렬배열에 0~19까지의 난수 설정 
 				  }
 		   }
+		   
+		   if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           } // 비정상값 입력시 안내문 출력후 종료 
+           
            return matrix; // 설정된 배열 리턴  
-}
+           }
 
-/* print matrix whose size is row x col */
+
 void print_matrix(int** matrix, int row, int col)
 {
 	    if(row <= 0 || col <=0) {
@@ -129,6 +135,11 @@ void print_matrix(int** matrix, int row, int col)
 				 }
 			    printf("\n");
 			 }
+		
+		if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           }	 
 }
 
 
@@ -146,6 +157,11 @@ int free_matrix(int** matrix, int row, int col)
 			 }
 			 
 			 free(matrix);//행 공간 동적 할당해제  
+		
+		if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           }	 
 }
 
 
@@ -163,6 +179,14 @@ int fill_data(int** matrix, int row, int col)
            	   	   matrix[i][k]=rand()%20; //row col 사이즈 행렬에 난수 설정  
 				  }
 		   }
+		   
+		if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           }// 비정상값 입력시 안내문 출력후 종료 
+		
+		print_matrix(matrix,row,col);  //채워진 행렬값 출력 
+		printf("\n");
 }
 
 /* matrix_sum = matrix_a + matrix_b */
@@ -175,23 +199,26 @@ int addition_matrix(int** matrix_a, int** matrix_b, int row, int col)
         int i; //반복문 용 변수 i 
         int k; //반복문 용 변수 k 
         
-        int matrix[row][col]; //row col 사이즈 배열 생성 
+         int** matrix=(int**)malloc(sizeof(int*)*row); //행 사이즈 만큼 동적 할당 
+           for(i=0;i<row;i++){ //행 만큼 반복 
+        	   matrix[i]=(int**)malloc(sizeof(int*)*col); //열 사이즈 만큼 동적 할당  
+           } 
            
         for(i=0;i<row;i++){
         	for(k=0;k<col;k++){
         		matrix[i][k]=matrix_a[i][k]+matrix_b[i][k]; //행렬 덧셈 알고리즘  
 			}
 		}
-
-		for(i=0;i<row;i++){
-        	for(k=0;k<col;k++){
-        		printf("%d",matrix[i][k]); //덧셈 완료된 행렬 출력  
-        		printf("\t");
-			}
-			printf("\n");
-		}
+        
+        if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           }
+	    
+	    print_matrix(matrix,row,col); // 저장된 matrix 출력 
+	    
+	    free(matrix); //matrix 동적할당 해제 
 		
-
 }
 
 /* matrix_sub = matrix_a - matrix_b */
@@ -204,21 +231,25 @@ int subtraction_matrix(int** matrix_a, int** matrix_b, int row, int col)
         int i; // 반복문 용 변수 i 
         int k; // 반복문 용 변수 k 
         
-        int matrix[row][col]; //row col 사이즈 배열 생성
+        int** matrix=(int**)malloc(sizeof(int*)*row); //행 사이즈 만큼 동적 할당 
+           for(i=0;i<row;i++){ //행 만큼 반복 
+        	   matrix[i]=(int**)malloc(sizeof(int*)*col); //열 사이즈 만큼 동적 할당  
+           } 
            
         for(i=0;i<row;i++){
         	for(k=0;k<col;k++){
         		matrix[i][k]=matrix_a[i][k]-matrix_b[i][k]; //행렬 뺄셈 알고리즘  
 			}
 		}
-
-		for(i=0;i<row;i++){
-        	for(k=0;k<col;k++){
-        		printf("%d",matrix[i][k]); //뺄셈 완료된 행렬 출력  
-        		printf("\t");
-			}
-			printf("\n");
-		}
+		
+		if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           } // 비정상값 입력시 안내문 출력후 종료 
+           
+        print_matrix(matrix,row,col); //저장된 matrix 출력
+		free(matrix); //matrix 동적할당 해제 
+		
 }
 
 /* transpose the matrix to matrix_t */
@@ -235,7 +266,13 @@ int transpose_matrix(int** matrix, int** matrix_t, int row, int col)
         		matrix_t[i][k]=matrix[k][i]; //martix에 행과 열을 바꿔서 matrix_t 에 저장  
 			}
 		}
-
+		
+		if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           } // 비정상값 입력시 안내문 출력후 종료 
+		
+         
 }
 
 /* matrix_axt - matrix_a x matrix_t */
@@ -247,7 +284,10 @@ int multiply_matrix(int** matrix_a, int** matrix_t, int row, int col)
                
 	    int i,k,j; // 반복문 용 변수 ikj 
 	    
-	    int matrix[row][col]; //row col 사이즈 배열 생성
+	    int** matrix=(int**)malloc(sizeof(int*)*row); //행 사이즈 만큼 동적 할당 
+           for(i=0;i<row;i++){ //행 만큼 반복 
+        	   matrix[i]=(int**)malloc(sizeof(int*)*col); //열 사이즈 만큼 동적 할당  
+           } //row col 사이즈 배열 생성
            
 	    int sum=0; // 행렬 곱의 합  저장 변수 sum 선언  
 
@@ -260,13 +300,12 @@ int multiply_matrix(int** matrix_a, int** matrix_t, int row, int col)
 			matrix[i][k]=sum; // 계산된 값 matrix에 저장  
 			}
 		}
-
-		for(i=0;i<row;i++){
-			for(k=0;k<row;k++){
-				printf("%d",matrix[i][k]); // 행렬*전치행렬 출력  
-				printf("\t");
-			}
-			printf("\n");
-		}
+        
+        if(matrix == NULL) {
+                   printf("Check the sizes of row and col!\n");
+                   return NULL;
+           } // 비정상값 입력시 안내문 출력후 종료 
+           
+		print_matrix(matrix,row,row); // 계산된 matrix 출력  
 }
 

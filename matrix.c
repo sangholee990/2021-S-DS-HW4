@@ -222,7 +222,7 @@ int multiply_matrix(int** matrix_a, int** matrix_t, int row, int col)
 	    	for(k=0;k<row;k++){ // row * row 인 이유는 row * col 행렬의 경우 전치행렬의 크기가 col * row 이므로 행렬* 전치행렬의 크기는 row * row 가된다. 
 	    		sum=0; //sum 값 초기화 
 	    		for(j=0;j<col;j++){
-	    			sum+=matrix_a[i][j]*matrix_t[j][k]; // 행렬 한개 요소의 계산값 저장  
+	    			sum+=matrix_a[i][j]*matrix_t[j][k]; // 행렬 한개 성분의 계산값 저장  
 				}
 			matrix[i][k]=sum; // 계산된 값 matrix에 저장  
 			}

@@ -95,6 +95,11 @@ int main()
 /* create a 2d array whose size is row x col using malloc() */
 int** create_matrix(int row, int col)
 {
+	      
+            if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+
 	       int i; //반복문 용 변수 i
 		   int k; //반복문 용 변수 K; 
 	       int** matrix=(int**)malloc(sizeof(int*)*row); //행 사이즈 만큼 동적 할당 
@@ -112,6 +117,10 @@ int** create_matrix(int row, int col)
 /* print matrix whose size is row x col */
 void print_matrix(int** matrix, int row, int col)
 {
+	    if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+               
              int i,k; //반복문용 변수 i,k 선언 
 			 for(i=0;i<row;i++){
 			 	for(k=0;k<col;k++){
@@ -126,6 +135,10 @@ void print_matrix(int** matrix, int row, int col)
 /* free memory allocated by create_matrix() */
 int free_matrix(int** matrix, int row, int col)
 {
+	    if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+               
              int i; //반복문 용 변수 i 
            
              for(i=0;i<col;i++){
@@ -139,6 +152,10 @@ int free_matrix(int** matrix, int row, int col)
 /* assign random values to the given matrix */
 int fill_data(int** matrix, int row, int col)
 {
+	   if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+               
         int i; //반복문 용 변수 i  
         int k; // 반복문 용 변수 k 
             for(i=0;i<row;i++){
@@ -151,6 +168,10 @@ int fill_data(int** matrix, int row, int col)
 /* matrix_sum = matrix_a + matrix_b */
 int addition_matrix(int** matrix_a, int** matrix_b, int row, int col)
 {
+	   if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+               
         int i; //반복문 용 변수 i 
         int k; //반복문 용 변수 k 
         
@@ -175,7 +196,11 @@ int addition_matrix(int** matrix_a, int** matrix_b, int row, int col)
 
 /* matrix_sub = matrix_a - matrix_b */
 int subtraction_matrix(int** matrix_a, int** matrix_b, int row, int col)
-{
+{ 
+        if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+               
         int i; // 반복문 용 변수 i 
         int k; // 반복문 용 변수 k 
         
@@ -199,6 +224,10 @@ int subtraction_matrix(int** matrix_a, int** matrix_b, int row, int col)
 /* transpose the matrix to matrix_t */
 int transpose_matrix(int** matrix, int** matrix_t, int row, int col)
 {
+	    if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+               
         int i,k,j; // 반복문 용 변수 ikj  
 
         for(i=0;i<row;i++){
@@ -212,6 +241,10 @@ int transpose_matrix(int** matrix, int** matrix_t, int row, int col)
 /* matrix_axt - matrix_a x matrix_t */
 int multiply_matrix(int** matrix_a, int** matrix_t, int row, int col)
 {
+	    if(row <= 0 || col <=0) {
+               printf("Check the sizes of row and col!\n");
+               return NULL;} // 비정상값 입력시 안내문 출력후 종료 
+               
 	    int i,k,j; // 반복문 용 변수 ikj 
 	    
 	    int matrix[row][col]; //row col 사이즈 배열 생성
